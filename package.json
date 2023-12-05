@@ -1,0 +1,14 @@
+{
+	"name": "vam-backend",
+	"version": "1.0.0",
+	"type": "module",
+	"description": "In this folder you will find the backend of the VAM project.",
+	"main": "app.js",
+	"scripts": {
+		"start": "node ./app.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "TrujiDev",
+	"license": "ISC"
+}
