@@ -1,13 +1,14 @@
 import express from 'express';
 import connectDB from './config/db.js';
+import vetRoutes from './routes/vetRoutes.js';
 
 const app = express();
 
+app.use(express.json());
+
 connectDB();
 
-app.get('/', (req, res) => {
-	res.send('Hello World!');
-});
+app.use('/api/vets', vetRoutes);
 
 const PORT = process.env.PORT || 4000;
 
