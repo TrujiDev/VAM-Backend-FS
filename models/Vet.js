@@ -2,6 +2,16 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 import generateID from '../helpers/generateID.js';
 
+/**
+ * @typedef VetSchema
+ * @property {string} name - The name of the vet.
+ * @property {string} password - The password of the vet.
+ * @property {string} email - The email of the vet.
+ * @property {string} phone - The phone number of the vet.
+ * @property {string} web - The website of the vet (optional).
+ * @property {string} token - The token of the vet (default: generateID).
+ * @property {boolean} confirmed - Indicates if the vet is confirmed (default: false).
+ */
 const VetSchema = new mongoose.Schema({
 	name: {
 		type: String,
@@ -45,6 +55,10 @@ VetSchema.pre('save', async function (next) {
 		next();
 	}
 
+	/**
+	 * The salt used for hashing passwords.
+	 * @type {string}
+	 */
 	const salt = await bcrypt.genSalt(10);
 	this.password = await bcrypt.hash(this.password, salt);
 });

@@ -1,6 +1,15 @@
 import jwt from 'jsonwebtoken';
 import Vet from '../models/Vet.js';
 
+/**
+ * Middleware function to check if the request is authenticated.
+ * It verifies the token in the request headers and sets the "vet" property in the request object.
+ * If the token is invalid or missing, it returns an error response.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {Function} next - The next middleware function.
+ * @returns {void}
+ */
 const checkAuth = async (req, res, next) => {
 	let token;
 	if (

@@ -2,6 +2,13 @@ import Vet from '../models/Vet.js';
 import generateJWT from '../helpers/generateJWT.js';
 import generateID from '../helpers/generateID.js';
 
+/**
+ * Registers a new vet.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the vet is registered.
+ */
 const registerVets = async (req, res) => {
 	const { email } = req.body;
 
@@ -21,6 +28,11 @@ const registerVets = async (req, res) => {
 	}
 };
 
+/**
+ * Retrieves the profile of a veterinarian.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ */
 const vetProfile = (req, res) => {
 	const { vet } = req;
 
@@ -29,6 +41,12 @@ const vetProfile = (req, res) => {
 	res.json({ msg: 'Showing profile...' });
 };
 
+/**
+ * Confirm the vet user by token.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the vet user is confirmed.
+ */
 const confirmVet = async (req, res) => {
 	const { token } = req.params;
 
@@ -51,6 +69,12 @@ const confirmVet = async (req, res) => {
 	}
 };
 
+/**
+ * Authenticate a veterinarian user.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Object} - The response object containing a token or an error message.
+ */
 const authVet = async (req, res) => {
 	const { email, password } = req.body;
 
@@ -74,6 +98,13 @@ const authVet = async (req, res) => {
 	}
 };
 
+/**
+ * Handles the forgot password functionality for vets.
+ * 
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves when the operation is complete.
+ */
 const forgotPassword = async (req, res) => {
 	const { email } = req.body;
 	
@@ -93,6 +124,13 @@ const forgotPassword = async (req, res) => {
 	}
 };
 
+/**
+ * Check if the provided token is valid.
+ *
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves with a JSON response indicating the validity of the token.
+ */
 const checkToken = async (req, res) => {
 	const { token } = req.params;
 
@@ -106,6 +144,12 @@ const checkToken = async (req, res) => {
 	res.json({ msg: 'Valid token' });
 };
 
+/**
+ * Resets the password for a vet using a token and a new password.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A promise that resolves once the password is reset.
+ */
 const resetPassword = async (req, res) => {
 	const { token } = req.params;
 	const { password } = req.body;

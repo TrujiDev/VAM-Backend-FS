@@ -1,3 +1,8 @@
+/**
+ * Generates a random ID consisting of alphanumeric characters.
+ * 
+ * @returns {string} The generated ID.
+ */
 const generateID = () => {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let token = '';
