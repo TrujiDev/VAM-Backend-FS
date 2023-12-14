@@ -17,4 +17,21 @@ const getPatients = async (req, res) => {
 	res.json(patients);
 };
 
-export { addPatient, getPatients };
+const getPatient = async (req, res) => {
+	const { id } = req.params;
+	const patient = await Patient.findById(id);
+
+	if (patient.vet._id.toString() !== req.vet._id.toString()) {
+		return res.status(401).json({ msg: 'Not authorized' });
+	}
+
+	if (patient) {
+		res.json(patient);
+	}
+};
+
+const updatePatient = async (req, res) => {};
+
+const deletePatient = async (req, res) => {};
+
+export { addPatient, getPatients, getPatient, updatePatient, deletePatient };
