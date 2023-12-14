@@ -24,6 +24,7 @@ const patientSchema = new mongoose.Schema(
 			required: true,
 		},
 		vet: {
+			// This is the relationship between the patient and the vet
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Vet',
 		},
