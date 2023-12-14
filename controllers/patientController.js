@@ -1,13 +1,15 @@
-import Patient from "../models/Patient.js";
+import Patient from '../models/Patient.js';
 
-const addPatient = (req, res) => {
-    const patient = new Patient(req.body);
+const addPatient = async (req, res) => {
+	const patient = new Patient(req.body);
+	patient.vet = req.vet._id;
 
-    try {
-        
-    } catch (error) {
-        console.log(error);
-    }
+	try {
+		const patientStored = await patient.save();
+		res.json(patientStored);
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 const getPatients = (req, res) => {};
