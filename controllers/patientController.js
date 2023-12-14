@@ -21,16 +21,40 @@ const getPatient = async (req, res) => {
 	const { id } = req.params;
 	const patient = await Patient.findById(id);
 
+	if (!patient) {
+		return res.status(404).json({ msg: 'Patient not found' });
+	}
+
 	if (patient.vet._id.toString() !== req.vet._id.toString()) {
 		return res.status(401).json({ msg: 'Not authorized' });
 	}
 
-	if (patient) {
-		res.json(patient);
-	}
+	res.json(patient);
 };
 
-const updatePatient = async (req, res) => {};
+const updatePatient = async (req, res) => {
+	const { id } = req.params;
+	const patient = await Patient.findById(id);
+
+	if (!patient) {
+		return res.status(404).json({ msg: 'Patient not found' });
+	}
+
+	if (patient.vet._id.toString() !== req.vet._id.toString()) {
+		return res.status(401).json({ msg: 'Not authorized' });
+	}
+
+	Object.keys(req.body).forEach((key) => {
+		patient[key] = req.body[key] || patient[key];
+	});
+
+	try {
+		const patientUpdated = await patient.save();
+		res.json(patientUpdated);
+	} catch (error) {
+		console.log(error);
+	}
+};
 
 const deletePatient = async (req, res) => {};
 
